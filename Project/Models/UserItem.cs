@@ -15,10 +15,9 @@ namespace Project.Models
 
         public string Password { get; set; }
 
-        public int Root { get; set; }
+        public  long Root { get; set; }
 
-
-        public UserItem(string username, string password, int root)
+        public UserItem(string username, string password, long root)
         {
             this.Username = username;
             this.Password = password;

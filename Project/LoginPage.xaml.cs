@@ -49,7 +49,7 @@ namespace Project
                     {
                         if (password == (string)statement[1])
                         {
-                            UserItem user = new UserItem((string)statement[0], (string)statement[1], (int)statement[2]);
+                            UserItem user = new UserItem((string)statement[0], (string)statement[1], (long)statement[2]);
                             Frame.Navigate(typeof(HomePage), user);
                             App.login = true;
                             return;
