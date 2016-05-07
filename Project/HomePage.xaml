@@ -8,6 +8,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Button x:Name="LoginOut_B" Content="LoginOut" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="715,564,0,0" Click="LoginOut_B_Click"/>
     </Grid>
 </Page>
