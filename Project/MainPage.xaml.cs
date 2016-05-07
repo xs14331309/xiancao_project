@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using SQLitePCL;
+using Windows.UI.Popups;
 
 //“空白页”项模板在 http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409 上有介绍
 
@@ -26,9 +27,9 @@ namespace Project
         public MainPage()
         {
             this.InitializeComponent();
-            frame.Navigate(typeof(HomePage), "");
+            frame.Navigate(typeof(LoginPage), "");
         }
-        bool Login = false;
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             mySplit.IsPaneOpen = !mySplit.IsPaneOpen;
@@ -37,13 +38,16 @@ namespace Project
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             SymbolIcon a = (SymbolIcon)(((Grid)e.ClickedItem).Children[0]);
-            if (a.Name == "HomePage")
+            if (!App.login)
             {
-                if (!Login) frame.Navigate(typeof(LoginPage), "");
-                else frame.Navigate(typeof(HomePage), "");
+                var t = new MessageDialog("You should Login first!").ShowAsync();
+                mySplit.IsPaneOpen = false;
+                return;
             }
+            if (a.Name == "HomePage") frame.Navigate(typeof(HomePage), "");
             else if (a.Name == "AddTask") frame.Navigate(typeof(AddTaskPage), "");
-            else frame.Navigate(typeof(TaskListPage), "");
+              else frame.Navigate(typeof(TaskListPage), "");
+            mySplit.IsPaneOpen = false;
         }
     }
 }

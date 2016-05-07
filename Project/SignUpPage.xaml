@@ -8,8 +8,23 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="SignUp_B" Content="SignUp" HorizontalAlignment="Left" Height="29" Margin="283,497,0,0" VerticalAlignment="Top" Width="77" Click="SignUp_B_Click"/>
-        <Button x:Name="Back_B" Content="Back" HorizontalAlignment="Left" Height="29" Margin="591,497,0,0" VerticalAlignment="Top" Width="77" Click="Back_B_Click"/>
+        <Button x:Name="SignUp_B" Content="SignUp" HorizontalAlignment="Left" Height="44" Margin="408,497,0,0" VerticalAlignment="Top" Width="86" Click="SignUp_B_Click"/>
+        <Button x:Name="Back_B" Content="Back" HorizontalAlignment="Left" Height="44" Margin="596,497,0,0" VerticalAlignment="Top" Width="88" Click="Back_B_Click"/>
+        <TextBox x:Name="Input_Username" HorizontalAlignment="Left" Height="54" Margin="476,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="311" FontSize="21.333"/>
+        <PasswordBox x:Name="Input_Password" HorizontalAlignment="Left" Height="54" Margin="476,162,0,0" VerticalAlignment="Top" Width="311" FontSize="21.333" />
+        <PasswordBox x:Name="Input_Password_A" HorizontalAlignment="Left" Height="54" Margin="476,269,0,0" VerticalAlignment="Top" Width="311" FontSize="21.333"/>
+        <TextBlock x:Name="Username" HorizontalAlignment="Left" Height="54" Margin="298,72,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="120" FontSize="18.667"/>
+        <TextBlock x:Name="Password" HorizontalAlignment="Left" Height="54" Margin="298,178,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="120" FontSize="21.333"/>
+        <TextBlock x:Name="Password_A" HorizontalAlignment="Left" Height="54" Margin="298,269,0,0" TextWrapping="Wrap" Text="Ensure Password" VerticalAlignment="Top" Width="120" FontSize="21.333"/>
+        <TextBlock x:Name="Root" HorizontalAlignment="Left" Height="54" Margin="298,386,0,0" TextWrapping="Wrap" Text="Root" VerticalAlignment="Top" Width="120" FontSize="21.333"/>
+
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Height="47" Margin="476,379,0,0" VerticalAlignment="Top" Width="129">
+            <ComboBoxItem Content="Boss" IsSelected="True"></ComboBoxItem>
+            <ComboBoxItem Content="Worker"></ComboBoxItem>
+        </ComboBox>
+        <TextBlock x:Name="Username_bug" HorizontalAlignment="Left" Height="54" Margin="834,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" FontSize="14.667" Foreground="Red"/>
+        <TextBlock x:Name="Password_bug" HorizontalAlignment="Left" Height="54" Margin="834,162,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="246" FontSize="14.667" Foreground="Red"/>
+        <TextBlock x:Name="Password_A_bug" HorizontalAlignment="Left" Height="54" Margin="834,269,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="246" FontSize="14.667" Foreground="Red"/>
 
     </Grid>
 </Page>

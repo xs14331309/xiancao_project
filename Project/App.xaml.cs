@@ -29,6 +29,8 @@ namespace Project
         /// </summary>
 
         public static SQLiteConnection conn { get; set; }
+        public static bool login { get; set; }
+
         public App()
         {
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
@@ -36,10 +38,10 @@ namespace Project
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            login = false;
 
             conn = new SQLiteConnection("sqlitetodo.db");
-            //string sql = @"CREATE TABLE IF NOT EXISTS TodoItem (Id INTERGER PRIMARY KEY AUTOINCREMENT,Title VARCHAR(140),Detail VARCHAR(1000),Datetime DATETIME(140),Filepath VARCHAR(1400))";
-            string sql = @"CREATE TABLE IF NOT EXISTS User (Username VARCHAR PRIMARY KEY AUTOINCREMENT,Code VARCHAR(20),Root INTERGER(1))";
+            string sql = @"CREATE TABLE IF NOT EXISTS User (Username VARCHAR(20) PRIMARY KEY,Password VARCHAR(20),Root INTERGER(1))";
             using (var statement = conn.Prepare(sql))
             {
                 statement.Step();

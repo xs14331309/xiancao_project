@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Project.Models;
+using SQLitePCL;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -29,8 +32,48 @@ namespace Project
 
         private void Login_B_Click(object sender, RoutedEventArgs e)
         {
-            //
-            Frame.Navigate(typeof(HomePage), "");
+            string username = Input_Username.Text;
+            string password = Input_Password.Password;
+
+            // 检查格式
+            if (!Input_Check(username, password)) return;
+
+            var dp = App.conn;
+            string sql = @"SELECT Username, Password, Root FROM User WHERE Username = ?";
+            using (var statement = dp.Prepare(sql))
+            {
+                statement.Bind(1, username);
+                if (SQLiteResult.ROW == statement.Step())
+                {
+                    if ((string)statement[0] != "")
+                    {
+                        if (password == (string)statement[1])
+                        {
+                            UserItem user = new UserItem((string)statement[0], (string)statement[1], (int)statement[2]);
+                            Frame.Navigate(typeof(HomePage), user);
+                            App.login = true;
+                            return;
+                        }
+                    }
+                }
+                var t = new MessageDialog("Username or Password is not correct!").ShowAsync();
+            }
+        }
+
+        public bool Input_Check(string username, string password)
+        {
+            Username_bug.Text = Password_bug.Text = "";
+            if (username == "")
+            {
+                username = "Username should not be empty!";
+                return false;
+            }
+            if (password == "")
+            {
+                password = "Password should not be empty!";
+                return false;
+            }
+            return true;
         }
 
         private void SignUp_B_Click(object sender, RoutedEventArgs e)
