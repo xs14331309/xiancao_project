@@ -38,7 +38,8 @@ namespace Project
             this.Suspending += OnSuspending;
 
             conn = new SQLiteConnection("sqlitetodo.db");
-            string sql = @"CREATE TABLE IF NOT EXISTS TodoItem (Id INTERGER PRIMARY KEY AUTOINCREMENT,Title VARCHAR(140),Detail VARCHAR(1000),Datetime DATETIME(140),Filepath VARCHAR(1400))";
+            //string sql = @"CREATE TABLE IF NOT EXISTS TodoItem (Id INTERGER PRIMARY KEY AUTOINCREMENT,Title VARCHAR(140),Detail VARCHAR(1000),Datetime DATETIME(140),Filepath VARCHAR(1400))";
+            string sql = @"CREATE TABLE IF NOT EXISTS User (Username VARCHAR PRIMARY KEY AUTOINCREMENT,Code VARCHAR(20),Root INTERGER(1))";
             using (var statement = conn.Prepare(sql))
             {
                 statement.Step();
