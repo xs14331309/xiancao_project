@@ -37,8 +37,8 @@ namespace Project
         {
             SymbolIcon a = (SymbolIcon)(((Grid)e.ClickedItem).Children[0]);
             if (a.Name == "HomePage") frame.Navigate(typeof(Page1), "");
-            else if (a.Name == "AddTask") frame.Navigate(typeof(Page2), "");
-            else frame.Navigate(typeof(Page3), "");
+            else if (a.Name == "AddTask") frame.Navigate(typeof(AddTaskPage), "");
+            else frame.Navigate(typeof(TaskListPage), "");
         }
     }
 }
