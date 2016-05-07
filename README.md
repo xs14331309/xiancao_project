@@ -11,14 +11,17 @@
      
 
 + todo：
-  1. 注册 登录页面
-  2. 发布任务页面
-  3. 任务详情页面 （后期考虑加入评论）
-  4. 主页面待完善
+  1. LoginPage (登陆界面， 包含 账户密码)
+  2. SignUpPage （注册界面，账户密码）
+  3. AddTaskPage (发布任务页面， 时间，标题，描述)
+  4. TaskContentPage 任务详情页面 （包含时间，标题，描述，后期考虑加入评论）
+  4. MainPage 整个应用的框架,待完善 (包含左侧导航栏的那个页面)
   5. 页面之间的跳转：
-    - LoginPage 登录到 MainPage
-    - LoginPage 注册到 SignUpPage
-    - SignUpPage 跳回 LoginPage
-    - MainPage页面跳转到 AddTaskPage
-    - MainPage页面跳转到 TaskListPage
-    - TaskListPage跳转到TaskContentPage
+    - LoginPage 登录成功后跳转到到 HomePage， 登陆失败则直接提示
+    - LoginPage 点击注册跳转后到 SignUpPage
+    - SignUpPage 注册成功后跳回 LoginPage ， 如果有用户重名则在 当前页面直接提示错误
+    - MainPage页面点击菜单的‘发布任务’跳转到 AddTaskPage
+    - MainPage页面点击菜单的‘任务列表’跳转到 TaskListPage
+    - TaskListPage 中点击任务跳转到相应任务的 TaskContentPage
+    - HomePage注销登录到LoginPage
+
