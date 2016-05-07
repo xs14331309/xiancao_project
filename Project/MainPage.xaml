@@ -7,10 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Click="Button_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" VerticalAlignment="Top" Width="50" Height="50"/>
-        <SplitView Name="mySplit" DisplayMode="CompactOverlay" CompactPaneLength="50" OpenPaneLength="170" IsPaneOpen="False" Tag="主页">
-            <SplitView.Pane>
+    <Frame>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Button Click="Button_Click" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" VerticalAlignment="Top" Width="50" Height="50"/>
+            <SplitView Name="mySplit" DisplayMode="CompactOverlay" CompactPaneLength="50" OpenPaneLength="170" IsPaneOpen="False" Tag="主页">
+                <SplitView.Pane>
                     <StackPanel Background="Gray">
                         <Grid>
                             <Grid.RowDefinitions>
@@ -64,11 +65,12 @@
                     </StackPanel>
                 </SplitView.Pane>
 
-            <SplitView.Content>
-                <Frame x:Name="frame">
-                  <!--// aaaaaaaaaaaa-->
-                </Frame>
-            </SplitView.Content>
-        </SplitView>
-    </Grid>
+                <SplitView.Content>
+                    <Frame x:Name="frame">
+                        <!--// aaaaaaaaaaaa-->
+                    </Frame>
+                </SplitView.Content>
+            </SplitView>
+        </Grid>
+    </Frame>
 </Page>

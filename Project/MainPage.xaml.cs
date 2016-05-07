@@ -25,9 +25,9 @@ namespace Project
         public MainPage()
         {
             this.InitializeComponent();
-            frame.Navigate(typeof(Page1), "");
+            frame.Navigate(typeof(HomePage), "");
         }
-
+        bool Login = false;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             mySplit.IsPaneOpen = !mySplit.IsPaneOpen;
@@ -36,7 +36,11 @@ namespace Project
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             SymbolIcon a = (SymbolIcon)(((Grid)e.ClickedItem).Children[0]);
-            if (a.Name == "HomePage") frame.Navigate(typeof(Page1), "");
+            if (a.Name == "HomePage")
+            {
+                if (!Login) frame.Navigate(typeof(LoginPage), "");
+                else frame.Navigate(typeof(HomePage), "");
+            }
             else if (a.Name == "AddTask") frame.Navigate(typeof(AddTaskPage), "");
             else frame.Navigate(typeof(TaskListPage), "");
         }
