@@ -6,9 +6,30 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="Login_B" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="338,546,0,0" Click="Login_B_Click"/>
-        <Button x:Name="SignUp_B" Content="SignUp" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="638,546,0,0" Click="SignUp_B_Click"/>
+    
+    <Grid Background="#FFE2DDFB">
+        <Button x:Name="Login_B" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="460,400,0,0" Click="Login_B_Click"/>
+        <Button x:Name="SignUp_B" Content="SignUp" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="604,400,0,0" Click="SignUp_B_Click"/>
+        <TextBox x:Name="Input_Username" HorizontalAlignment="Left" Height="46" Margin="434,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="319" FontSize="21.333"/>
+        <PasswordBox x:Name="Input_Password" HorizontalAlignment="Left" Height="46" Margin="434,296,0,0" VerticalAlignment="Top" Width="319" FontSize="21.333"/>
+        <TextBlock x:Name="Username" HorizontalAlignment="Left" Height="46" Margin="272,200,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="162"  TextAlignment="Center" FontSize="24">
+            <TextBlock.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FFA46E6E" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock x:Name="Password" HorizontalAlignment="Left" Height="46" Margin="272,296,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="162" TextAlignment="Center" FontSize="24">
+            <TextBlock.Foreground>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FFA46E6E" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Foreground>
+        </TextBlock>
+        <TextBlock x:Name="Username_bug" HorizontalAlignment="Left" Height="27" Margin="434,251,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="319" Foreground="Red"/>
+        <TextBlock x:Name="Password_bug" HorizontalAlignment="Left" Height="27" Margin="434,347,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="319" Foreground="Red"/>
     </Grid>
 </Page>
+

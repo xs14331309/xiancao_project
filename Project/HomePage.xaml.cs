@@ -29,6 +29,7 @@ namespace Project
 
         private void LoginOut_B_Click(object sender, RoutedEventArgs e)
         {
+            App.login = false;
             Frame.Navigate(typeof(LoginPage), "Login Out Successfully!");
         }
     }
