@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLitePCL;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace Project
         /// 初始化单一实例应用程序对象。这是执行的创作代码的第一行，
         /// 已执行，逻辑上等同于 main() 或 WinMain()。
         /// </summary>
+
+        public static SQLiteConnection conn { get; set; }
         public App()
         {
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
@@ -33,6 +36,13 @@ namespace Project
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            conn = new SQLiteConnection("sqlitetodo.db");
+            string sql = @"CREATE TABLE IF NOT EXISTS TodoItem (Id INTERGER PRIMARY KEY AUTOINCREMENT,Title VARCHAR(140),Detail VARCHAR(1000),Datetime DATETIME(140),Filepath VARCHAR(1400))";
+            using (var statement = conn.Prepare(sql))
+            {
+                statement.Step();
+            }
         }
 
         /// <summary>
@@ -79,6 +89,24 @@ namespace Project
             }
             // 确保当前窗口处于活动状态
             Window.Current.Activate();
+
+            // register a global listener for the BackRequested event
+            // You can register for this event in each page if you want to exclude specific pages from back navigation, 
+            // or you want to execute page-level code before displaying the page.
+            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
+
+            rootFrame.Navigated += (s, a) =>
+            {
+                if (rootFrame.CanGoBack)
+                {
+                    // Setting this visible is ignored on Mobile and when in tablet mode!     
+                    Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.Visible;
+                }
+                else
+                {
+                    Windows.UI.Core.SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Windows.UI.Core.AppViewBackButtonVisibility.Collapsed;
+                }
+            };
         }
 
         /// <summary>
@@ -103,6 +131,21 @@ namespace Project
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
+        }
+
+        private void OnBackRequested(object sender, Windows.UI.Core.BackRequestedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame == null)
+                return;
+
+            // Navigate back if possible, and if the event has not 
+            // already been handled .
+            if (rootFrame.CanGoBack && e.Handled == false)
+            {
+                e.Handled = true;
+                rootFrame.GoBack();
+            }
         }
     }
 }
