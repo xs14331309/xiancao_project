@@ -23,6 +23,7 @@
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="textBlock" Grid.Row="0" Text="task list" Style="{StaticResource HeaderTextBlockStyle}"/>
                 <ListView Grid.Row="1" IsItemClickEnabled="True"
+                      ItemClick="TaskListView_ItemClick"
                       x:Name="TaskListView"
                       ItemsSource="{x:Bind ViewModel.AllItems}" HorizontalAlignment="Left" RenderTransformOrigin="0.481,0.485" Width="711" Margin="0,0,-71,-139">
                     <ListView.ItemTemplate>

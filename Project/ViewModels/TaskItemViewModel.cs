@@ -27,12 +27,11 @@ namespace Project.ViewModels
         public TaskItemViewModel()
         {
             // 获取当前应用程序所在位置的路径
-            FileInfo pfile = new FileInfo("Todos.exe");
+            FileInfo pfile = new FileInfo("Project.exe");
             // 图片绝对的路径 = 绝对路径+相对路径
-
+            path = pfile+ "\\Assets\\SplashScreen.scale-200.png";
             // 从数据库中加载数据
             getItemFromDB();
-            //
         }
 
         public async void getItemFromDB()
@@ -56,7 +55,7 @@ namespace Project.ViewModels
                         DateTimeFormatInfo dtFormat = new DateTimeFormatInfo();
                         dtFormat.ShortDatePattern = "yyyy-MM-dd";
                         dt = Convert.ToDateTime((string)statement[3], dtFormat);
-                        this.allItems.Add(new Models.TaskItem(statement[0].ToString(), statement[1].ToString(), (string)statement[2], bimage, dt, (string)statement[4]));
+                        this.allItems.Add(new Models.TaskItem(statement[0].ToString(), statement[1].ToString(), (string)statement[2], bimage, dt, (string)statement[4], (string)statement[5], (string)statement[6]));
                     }
                 }
             }
@@ -68,19 +67,20 @@ namespace Project.ViewModels
 
         }
 
-        public void AddTaskItem(string title, string description, DateTime datetime, string filepath, string username)
+        public void AddTaskItem(string title, string description, DateTime datetime, string filepath, string username, string comment)
         {
             if (filepath == null) filepath = path;
             var dp = App.conn;
             try
             {
-                using (var Todolist = dp.Prepare("INSERT INTO TaskItem (Title, Detail, Datetime, Filepath, Username) VALUES (?, ?, ?, ?, ?)"))
+                using (var Todolist = dp.Prepare("INSERT INTO TaskItem (Title, Detail, Datetime, Filepath, Username, Comment) VALUES (?, ?, ?, ?, ?, ?)"))
                 {
                     Todolist.Bind(1, title);
                     Todolist.Bind(2, description);
                     Todolist.Bind(3, datetime.Date.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo));
                     Todolist.Bind(4, filepath);
                     Todolist.Bind(5, username);
+                    Todolist.Bind(6, comment);
                     Todolist.Step();
                     getItemFromDB();
                 }
@@ -104,23 +104,25 @@ namespace Project.ViewModels
             this.selectedItem = null;
         }
 
-        //public void updatetaskitem(string id, string title, string description, datetime datetime, bitmapimage bitmapimage, string filepath)
-        //{
-        //    if (this.selecteditem != null)
-        //    {
-        //        using (var todolist = app.conn.prepare("update taskitem set title = ?, detail = ?, datetime = ?, filepath = ? where id = ?"))
-        //        {
-        //            todolist.bind(1, title);
-        //            todolist.bind(2, description);
-        //            todolist.bind(3, datetime.date.tostring("yyyy-mm-dd", datetimeformatinfo.invariantinfo));
-        //            todolist.bind(4, filepath);
-        //            todolist.bind(5, id);
-        //            todolist.step();
-        //        }
-        //    }
-        //    getitemfromdb();
-        //    this.selecteditem = null;
-        //}
+        public void updatetaskitem(string id, string title, string description, DateTime datetime, BitmapSource bitmapimage, string filepath, string username, string comment)
+        {
+            if (this.selectedItem != null)
+            {
+                using (var tasklist = App.conn.Prepare("update taskitem set Title = ?, Detail = ?, Datetime = ?, Filepath = ?, Username = ?, Comment = ? where id = ?"))
+                {
+                    tasklist.Bind(1, title);
+                    tasklist.Bind(2, description);
+                    tasklist.Bind(3, datetime.Date.ToString("yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo));
+                    tasklist.Bind(4, filepath);
+                    tasklist.Bind(5, username);
+                    tasklist.Bind(6, comment);
+                    tasklist.Bind(7, id);
+                    tasklist.Step();
+                }
+            }
+            getItemFromDB();
+            this.selectedItem = null;
+        }
 
         public Models.TaskItem GetNewestItem()
         {

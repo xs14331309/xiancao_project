@@ -50,6 +50,7 @@ namespace Project
                         if (password == (string)statement[1])
                         {
                             UserItem user = new UserItem((string)statement[0], (string)statement[1], (long)statement[2]);
+                            App.login_user = user;
                             Frame.Navigate(typeof(HomePage), user);
                             App.login = true;
                             return;

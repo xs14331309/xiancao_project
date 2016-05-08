@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Project.Models
 {
-    class UserItem
+    public class UserItem
     {
         public string Username { get; set; }
 

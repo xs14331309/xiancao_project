@@ -35,7 +35,6 @@ namespace Project
             string username = Input_Username.Text;
             string password = Input_Password.Password;
             int root = (comboBox.SelectionBoxItem.ToString() == "Boss") ? 1 : 0;
-            string bug = "";
 
             // 检查输入格式
             if (!Input_Check(username, password, Input_Password_A.Password)) return;

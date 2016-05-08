@@ -34,5 +34,11 @@ namespace Project
             this.InitializeComponent();
             this.ViewModel = new ViewModels.TaskItemViewModel();
         }
+
+        private void TaskListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ViewModel.SelectedItem = (Models.TaskItem)(e.ClickedItem);
+            Frame.Navigate(typeof(TaskContentPage), ViewModel);
+        }
     }
 }

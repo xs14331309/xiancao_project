@@ -29,7 +29,9 @@ namespace Project.Models
 
         public string username;
 
-        public TaskItem(string id, string title, string description, BitmapImage img, DateTime datetime, string filepath)
+        public string comments;
+
+        public TaskItem(string id, string title, string description, BitmapImage img, DateTime datetime, string filepath, string name, string _comment)
         {
             this.id = id; //生成id
             this.title = title;
@@ -38,7 +40,8 @@ namespace Project.Models
             completed = false; //默认为未完成
             this.filepath = filepath;
             source = img;
-            username = "";
+            username = name;
+            comments = _comment;
         }
     }
 }

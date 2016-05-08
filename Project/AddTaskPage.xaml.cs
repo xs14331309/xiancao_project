@@ -28,15 +28,15 @@ namespace Project
     public sealed partial class AddTaskPage : Page
     {
         string path;
-        string currentUser;
+        string currentUserName;
         public AddTaskPage()
         {
             this.InitializeComponent();
             //aaaaa
             this.ViewModel = new ViewModels.TaskItemViewModel();
-            FileInfo pfile = new FileInfo("Todos.exe");
-            this.path = pfile + "Assets\\SplashScreen.scale-200.png";
-            this.currentUser = "null";
+            FileInfo pfile = new FileInfo("Project.exe");
+            this.path = pfile.DirectoryName + "\\Assets\\SplashScreen.scale-200.png";
+            this.currentUserName = App.login_user.Username;
         }
         ViewModels.TaskItemViewModel ViewModel { get; set; }
 
@@ -47,7 +47,7 @@ namespace Project
             bool valid = checkValid();
             if (valid == true)
             {
-                ViewModel.AddTaskItem(title.Text.ToString(), details.Text.ToString(), time.Date.DateTime, imgPath, currentUser);
+                ViewModel.AddTaskItem(title.Text.ToString(), details.Text.ToString(), time.Date.DateTime, imgPath, currentUserName, "");
             }
             Frame.Navigate(typeof(HomePage), "");
         }
@@ -78,7 +78,7 @@ namespace Project
             if (file != null)
             {
                 path = file.Path;
-                using (IRandomAccessStream fileStream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read))  //从此往下不懂
+                using (IRandomAccessStream fileStream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read))
                 {
                     // Set the image source to the selected bitmap 
                     BitmapImage bitmapImage = new BitmapImage();

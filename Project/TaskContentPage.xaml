@@ -8,6 +8,49 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row ="0">
+            <!--title-->
+            <TextBlock x:Name="textBlock" Grid.Row="0" Text="         task content" Style="{StaticResource HeaderTextBlockStyle}"/>
+        </Grid>
+        <Grid Grid.Row ="1">
+            <!--task title-->
+            <TextBox Name="title" TextAlignment="Center" BorderBrush="White" Margin="46,0,716,0"/>
+            <DatePicker Name="date" Margin="760,31,0,37" Width="318"></DatePicker>
+        </Grid>
+        <Grid Grid.Row ="2">
+            <!--task creator & time-->
+            <TextBlock Name="creator" TextAlignment="Center"></TextBlock>
+        </Grid>
+        <Grid Grid.Row ="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Name="detail" TextAlignment="Justify" Margin="56,0,0,0" HorizontalAlignment="Left" Width="584" BorderBrush="White"></TextBox>
+            <Image Name="img" Source="/Assets/StoreLogo.png" HorizontalAlignment="Center" Grid.Column="1" Margin="0,0,78,0"></Image>
+        </Grid>
+        <Grid Grid.Row ="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="                          看看大家都在说些什么..."/>
+            <TextBlock Grid.Column="1" Name="comment_bar" TextAlignment="Left"></TextBlock>
+        </Grid>
+        <Grid Grid.Row ="5">
+            <TextBox x:Name="comment" HorizontalAlignment="Left" Margin="0,74,0,0" TextWrapping="Wrap" Text="在此填写评论" VerticalAlignment="Top" Width="451" Height="52"/>
+            <Button x:Name="Submit" Content="Submit" HorizontalAlignment="Left" Margin="476,82,0,0" VerticalAlignment="Top" Click="Submit_Click"/>
+            <Button x:Name="Updata" Content="Update" HorizontalAlignment="Left" Margin="868,82,0,0" VerticalAlignment="Top" Click="Updata_Click"/>
+            <Button x:Name="Delete_buttton" Content="delete" HorizontalAlignment="Left" Margin="983,80,0,0" VerticalAlignment="Top" Click="Delete_buttton_Click"/>
+            <!--write comment-->
+        </Grid>
     </Grid>
 </Page>
