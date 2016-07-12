@@ -30,7 +30,7 @@ namespace Project
 
         public static SQLiteConnection conn { get; set; }
         public static bool login { get; set; }
-
+        public static Models.UserItem login_user;
         public App()
         {
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
@@ -38,11 +38,19 @@ namespace Project
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            //not login
             login = false;
+            login_user = null;
 
             conn = new SQLiteConnection("sqlitetodo.db");
-            string sql = @"CREATE TABLE IF NOT EXISTS User (Username VARCHAR(20) PRIMARY KEY,Password VARCHAR(20),Root INTERGER(1))";
-            using (var statement = conn.Prepare(sql))
+            string sql_user = @"CREATE TABLE IF NOT EXISTS User (Username VARCHAR(20) PRIMARY KEY,Password VARCHAR(20),Root INTERGER(1))";
+            using (var statement = conn.Prepare(sql_user))
+            {
+                statement.Step();
+            }
+
+            string sql_task = @"CREATE TABLE IF NOT EXISTS TaskItem (Id INTEGER PRIMARY KEY AUTOINCREMENT,Title VARCHAR(140),Detail VARCHAR(1000),Datetime DATETIME(140),Filepath VARCHAR(1400),Username VARCHAR(1400),Comment VARCHAR(1400))";
+            using (var statement = conn.Prepare(sql_task))
             {
                 statement.Step();
             }
